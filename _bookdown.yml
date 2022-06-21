@@ -1,0 +1,18 @@
+book_filename: "physics-spring-pendulum"
+new_session: false
+delete_merged_file: true
+rmd_files: [
+  "index.Rmd",
+  "töö-eesmärgid.Rmd",
+  "töövahendid.Rmd",
+  "katseseadme-ülesseadmine/katseseadmete-skeemid.Rmd",
+  "töö-käik/töö-käik.Rmd",
+  "andmeanalüüs.Rmd",
+  "küsimused-vastused.Rmd",
+  "99-references.Rmd"
+]
+download: [
+    ["thesis.pdf", "PDF"],
+    ["thesis.epub", "EPUB"],
+    ["thesis.docx", "Word"]
+  ]

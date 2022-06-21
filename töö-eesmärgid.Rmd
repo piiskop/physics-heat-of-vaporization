@@ -1,0 +1,11 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+
+# Töö eesmärgid
+
+1. Vedru jälkuse mõõtmine
+
+2. Vedru otsas rippuva raskuse võnkumise uurimine.

@@ -1,0 +1,19 @@
+# Töö vahendid
+
+1.  *PASCO Science Workshop 500*, *700* või *750 (SW)* või *xPlorer GLX*'i liides,
+
+2. liikumissensor (*Motion Sensor*),
+
+3. jõusensor (*Force Sensor*),
+
+4. raskused riputamiseks,
+
+5. joonlaud,
+
+6. kaal,
+
+7. varras,
+
+8. statiiv,
+
+9. vedru.

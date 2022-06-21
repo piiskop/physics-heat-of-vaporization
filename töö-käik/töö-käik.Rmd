@@ -1,0 +1,148 @@
+# Töö käik
+
+## Teoreetilised alused
+
+Kujutlesin vedru, mis ripub statiivi küljes. Kui vedru küljes raskust ei ole, siis on selle pikkuseks *L* (seisupikkus). Kui vedrule lisatakse raskus, siis selle pikkus suureneb $\Delta(L)$'i võrra. Raskuse tasakaaluasend on nüüd vedru alguspunktist $L + \Delta(L)$'i kaugusel. Mis juhtub siis, kui vedru tasakaaluasendist veidi allapoole venitada? Vedru rakendab vastujõudu (elastsusjõudu) *F*, kus
+
+```{=tex}
+\begin{align}
+F := -k \cdot x,
+(\#eq:force)
+\end{align}
+```
+
+milles *x* on vedru pikkuse muutus (kaugus tasakaaluasendist) ja *k* on vedru jäikus. Miinusmärk avaldises näitab, et jõu suund on vastupidine raskuse nihke suunaga. Kui vedru venitatakse allapoole, siis elastsusjõud on suunatud üles ja vastupidi, surudes vedru kokku, on elastsusjõud suunatud alla. Vedru elastsusjõud on alati suunatud tasakaaluasendi poole. Kokkuvõttes paneb elastsusjõud raskuse üles-alla võnkuma.
+
+Juhul, kui võnkuvale kehale ei mõju summutavaid jõude (hõõrdejõud, takistusjõud), siis muutub keha kaugus tasakaaluasendist ehk hälve *x* muutub aja jooksul perioodiliselt vastavalt valemile
+
+```{=tex}
+\begin{align}
+x := x_{max} \cdot sin(2 \cdot \pi \cdot f \cdot t + \phi_0) = x_{max} \cdot sin(\frac{2 \cdot \pi \cdot t}{T} + \phi_0),
+(\#eq:deviation)
+\end{align}
+```
+
+kus $x_{max}$ on võnkumise amplituud ehk maksimaalne hälve tasakaaluasendist (võib tähistada ka tähisega *A*), *f* on võnkumise sagedus, $\phi_0$ on algfraas ja $T := \frac{1}{f}$ on võnkeperiood. Siinuse argumenti $2 \cdot \pi \cdot f \cdot t + \phi_0$ nimetatakse võnkumiste faasiks. Sellest osa $2 \cdot pi \cdot \frac{t}{T}$ on konverteerimine ajaühikutest nurgaühikutesse. Loogiliselt $\frac{x}{x_{max}}$ tähendab siinuse väärtust, mis on absoluutväärtuselt nullist üheni ehk et hälve ei saa olla suurem kui amplituud. Üldiselt kirjeldab faas võnkumise hetkeseisundit (kas pendel on parasjagu maksimaalses hälbes, tasakaaluasendis või kusagil vahepeal) ja seda mõõdetakse radiaanides või kraadides. Täisperiood ehk täisvõnge on 360° ehk $2 \cdot \pi$ radiaani. Samuti iseloomustab faas, kuspool tasakaaluasendit pendel hetkel viibib. Faasi lugemise alguspunkt (nullpunkt) valitakse sageli tasakaaluasend, millele veerandperioodi järel järgneb maksimum.
+
+Võnkeperiood sõltub raskuse massist *m* ja vedru jälkusest *k* vastavalt valemile
+
+```{=tex}
+\begin{align}
+T := 2 \cdot \pi \cdot \sqrt{\frac{m}{k}}.
+(\#eq:period)
+\end{align}
+```
+
+Vedru võnkumise ajal muundub selle kineetiline energia pidevalt potentsiaalseks energiaks ja vastupidi. Kui hõõrdumist mitte arvestada, siis süsteemi koguenergia jääb konstantseks. Kui raskus on ülemises või alumises asendis, siis on võnkliikumise potentsiaalne energia tasakaaluasendi suhtes maksimaalne, kineetiline energia aga minimaalne. (Kineetiline energia on seotud raskuse liikumiskiiruse ruuduga. Alumises ja ülemises asendis on aga raskus paigal.) Kui raskus on jõudnud tasakaaluasendisse, siis on selle potentsiaalne energia tasakaaluasendi suhtes null, kuid kineetiline energia maksimaalne.
+
+Võnkliikumise potentsiaalne energia **tasakaaluasendi suhtes** on
+
+```{=tex}
+\begin{align}
+E_{p} := \frac{k \cdot x^2}{2}.
+(\#eq:potential-energy)
+\end{align}
+```
+
+[@haynes_2014_crc, p. 2-2].
+
+Kineetiline energia määratakse valemiga
+
+```{=tex}
+\begin{align}
+E_{k} := \frac{m \cdot v^2}{2}
+(\#eq:kinetic-energy)
+\end{align}
+```
+
+[@haynes_2014_crc, p. 2-2].
+
+1 - α usaldusintervall aritmeetilise keskmise tõelise väärtuse jaoks:
+
+```{=tex}
+\begin{equation}
+\overline{x} \pm t(n - 1, \frac{\alpha}{2}) \cdot \sqrt{\frac{\sum_{i := 1}^n{(\overline{x} - x_i)^2}}{n \cdot (n - 1)}}
+(\#eq:confidence-interval)
+\end{equation}
+```
+
+[@inbook, pp. 2-7]
+
+Suhteline erinevus:
+
+```{=tex}
+\begin{align}
+R := \frac{|f - r|}{f}.
+(\#eq:relative-difference)
+\end{align}
+```
+
+## Praktiline osa 1: vedru jälkuse määramine
+
+Esmalt lasin arvutada vedru jälkuse *k*. Jõusensori abil mõõdetakse jõudu, mis pingutab raskusega vedru. Joonlaua abil tuli mõõta vedru deformatsioon (vedru pikkuse suurenemine võrreldes algse pikkusega) ning see arvutisse sisestada. Kuivõrd vedrule mõjuv jõud ja selle poolt põhjustatud deformatsioon on võrdelises sõltuvuses (valem \@ref(eq:force)), siis saab programmi *DataStudio* abil arvutada jõu-deformatsiooni suuruse *F(x)* andmetele kõige paremini sobiva sirge tõusu, mis ongi vedru jälkus *k*:
+
+1. Ühendasin liidese arvutiga, lülitasin liidese sisse ning seejärel panin arvuti tööle. Ühendasin jõusensori pistiku liidese analoogsisendisse *A*. Avasin *DataStudio* faili **harmooniline vonkumine 1.ds**. Avatud dokumendis on graafik *jõud - pikkus* (*Force - Deformation*).
+
+2. Jõusensori kinnitasin statiivi külge konksuga allapoole (joonis \@ref(fig:setting-up-test-device)). Vedru riputasin jõusensori konksu külge.
+
+3.  Määrasin joonlauaga vedru alumise otsa asendi (ilma raskuseta). Panin selle mõõtmistulemuse (vedru tasakaaluasend $x_{balance}$) kirja.
+    
+    ```{r}
+    x_balance <- 1.04e-1
+    ```
+
+    $x_{balance} := \mathrm{`r x_balance` \times m}$
+
+4. Jõusensori näidu nullimiseks alustasin andmete salvestamisega ning nullisin mõõtetulemuse (see kuvatakse *Digits*-aknas) vajutades jõusensori küljel oleat *Tare*-nuppu. Lõpetasin andmete salvestamise ja kustutasin mõõtetulemused.
+
+5. Andmete salvestamise alustamiseks vajutasin nuppu *Start*. Seejärel vajutasin nupule *Keep*. Avanes *Keyboard Sampling*'i aken. Sinna sain sisestada vedru deformatsiooni meetrites. Sisestasin deformatsiooni. Juhul, kui mul vedru otsa polnud raskusi riputatud, pidi see olema *0*. Väärtuse salvestamiseks vajutasin *Enter*, arvuti salvestas samaaegselt jõusensori *F* näidu.
+
+6. Lisasin vedru otsa $100 \cdot g$ raskuse (arvestasin ka raskuse konksu massi). Mõõtsin vedru otsa uue asendi $x_i$. Lasin arvutada erinevuse uue asendi ja tasakaaluasendi vahel $\Delta(x)$ ehk deformatsiooni, kus $\Delta(x) := x_i - x_{balance}$ ning vajutasin taas nuppu *Keep* ning sisestasin arvutisse saadud deformatsiooni väärtuse meetrites. Väärtuse salvestamiseks ja uue jõusensori näidu võtmiseks vajutasin taas klahvile *Enter*. *Entry #2* väärtus ilmus andmeloendisse. Samal ajal täitsin ka tabelit \@ref(tab:determination-of-spring-stiffness).
+
+7. Lisasin vedru otsa veel $100 \cdot g$ (kokku $200 \cdot g$) ning kordasin vedru alumise otsa uue asendi määramist ja deformatsiooni arvutamist ning arvutisse sisestamist. Jätkasin raskuste lisamist $100 \cdot g$ kaupa, kuni olin kokku lisanud $600 \cdot g$. Andmete salvestamise lõpetamiseks vajutasin nuppu *Stop* (punane kastike *Keep*-nupu kõrval).
+
+```{r label = "determination-of-spring-stiffness", attr.source = ".numberLines", width=20}
+
+m <- c(99.7e-3, 100.9e-3, 99.9e-3, 98.6e-3, 101.2e-3, 101.4e-3)
+m_5 <- sum(m[1:5])
+total_m <- 0
+
+for (index in 1:length(m)) {
+  total_m <- total_m + m[index]
+  m[index] <- total_m
+}
+
+F <- c(-1, -2, -3.1, -3.9, -5, -5.9)
+x_i <- c(.111, .155, .199, .236, .284, .327)
+delta_x <- x_i - x_balance
+determination_of_spring_stiffness <- data.frame(m, F, x_i, delta_x)
+colnames(determination_of_spring_stiffness) <- c("Mass $\\mathrm{\\frac{1}{g}}$", "Jõud $\\frac{F}{\\mathrm{N}}$", "Vedru otsa asend $\\frac{x_i}{\\mathrm{m}}$", "Deformatsioon $\\frac{\\Delta(x)}{m}$")
+
+librarian::shelf("kableExtra")
+print_table(determination_of_spring_stiffness, caption = "Vedru jälkuse määramine", digits = 6)
+
+```
+
+```{=tex}
+\twocolumn
+```
+
+## Praktiline osa 2: Võnkeperioodi määramine ja võnkliikumise uurimine
+
+Selles laboratoorse töö osas jälgis liikumissensor vedru külge riputatud raskuse liikumist. Programm *DataStudio* salvestas liikumist iseloomustavad suurused (asend - kaugus sensorist; kiirus liikumise jooksul) ja kuvas võnkuva raskuse asendi ning kiiruse ekraanile. Määrati võnkeperiood ja saadud tulemust võrreldi teoreetiliselt saadud väärtusega:
+
+1. Eraldasin jõusensori pistiku liidese küljest. Ühendasin liikumissensori pistiku liidesesse jõusensori pistiku kohale. Avasin *DataStudio* faili **harmooniline vonkumine 2.ds**.
+
+2.  Kinnitasin vedru statiivi külge nii, et see sai vabalt üles-alla liikuda. Riputasin vedru otsa raskused, sobivaim oli kasutada vedru otsas olevaid raskusi kogumassiga 400 kuni 600 grammi (joonis \@ref(fig:harmonic-oscillation)). mina panin viis vidinat vedru külge. Riputasin vedru otsa vidinaid kogumassiga $`r m_5` \times \mathrm{kg}$.
+
+3. Panin liikumissensori põrandale täpselt vedru alla. Vedru otsa ja musta liikumisseonsori vahele pidi jääma vähemalt $\mathrm{40 \cdot cm}$. Sinise sensori korral seda piirangut ei ole.
+
+4.  Võtsin liikumissensori lugemi, kui pendel ei liikunud, vajutades korraks nuppu *Start*, ja seejärel katkestasin katse vajutades nupule *Stop*.
+
+5. Tõmbasin raksust umbes $\mathrm{20 \cdot cm}$ allapoole ja lasksin lahti. Lasksin sellel mõned korrad võnkuda, nii et soovimatu võbelemine sumbuks ja jääks järgi korrapärane võnkumine. Kontrollisin, et raskus poleks madalaimas asendis liikumissensorile lähemal kui $\mathrm{40 \cdot cm}$ (proovisalvestusgraafikul n-ö nagu lõigatakse võnkumiste äärmised asendid ära, jääb kandiline tipp).
+
+6. Andmete salvestamise alustamiseks vajutasin nuppu *Start*. Võnkuva raskuse asend ja kiirus ilmusid graafikule. Jätkasin salvestamist umbes $\mathrm{10 \cdot s}$. Andmete salvestamise lõpetamiseks vajutasin nuppu *Stop*. Aknas *Experiment Setup* ilmus andmelehele *Run #1*. Salvestasin faili koopia käsuga *Save As* enda nimele edasiseks analüüsimiseks.
+
+```{=tex}
+\onecolumn
+```
