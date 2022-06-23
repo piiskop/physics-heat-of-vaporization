@@ -1,19 +1,25 @@
 # Töö vahendid
 
-1.  *PASCO Science Workshop 500*, *700* või *750 (SW)* või *xPlorer GLX*'i liides,
+1. Keeduklaas,
 
-2. liikumissensor (*Motion Sensor*),
+2. keeduspiraal,
 
-3. jõusensor (*Force Sensor*),
+3. elektroonilised kaalud,
 
-4. raskused riputamiseks,
+4. sekundimõõdik,
 
-5. joonlaud,
+5. ampermeeter,
 
-6. kaal,
+6. voltmeeter,
 
-7. varras,
+7. pikendusjuhe (spetsiaalselt selle katse tarvis),
 
-8. statiiv,
+8. pingeregulaator,
 
-9. vedru.
+9. juhtmed,
+
+10. lüliti,
+
+11. anum veega vee lisamiseks,
+
+12. valge ekraan.

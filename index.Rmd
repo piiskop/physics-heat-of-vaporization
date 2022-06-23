@@ -1,10 +1,10 @@
 --- 
-title: "Lihtne harmooniline võnkumine - vedrupendel"
+title: "Vee aurustumissoojuse määramine ekstrapoleerimismeetodil"
 author: 'peacecop kalmer:'
-number: 4
-#date: "`r Sys.Date()`"
-date-work: "20220506"
-date-handing-over: "20220621"
+partners: 'Risto Koor'
+instructor: 'Neeme Lumi'
+date-work: "20220407"
+date-handing-over: "20220622"
 group: "MLLBk-1"
 site: bookdown::bookdown_site
 documentclass: article
@@ -17,10 +17,10 @@ description: |
 biblio-style: newapa
 geometry: left=3cm, right=2cm, top=2cm, bottom=3cm
 fontsize: 12pt
-mainfont: Latin Modern Roman
-sansfont: Arial
-monofont: Latin Modern Mono
-mathfont: Latin Modern Math
+# mainfont: Nimbus Roman
+# sansfont: Arial
+# monofont: Nimbus Mono
+# mathfont: MathJax_Main
 linestretch: 1.5
 toc-depth: 5
 lof: yes
@@ -29,7 +29,7 @@ toc: yes
 classoption: twoside
 lang: et
 link-citations: yes
-#subtitle: LABORATOORNE TÖÖ 1
+subtitle: neljas laboratoorne töö soojusõpetuse praktikumis
 ---
 
 ```{r setup, echo=FALSE, message=FALSE}
@@ -90,3 +90,6 @@ print_table <- function(data_frame, caption, digits = 2) {
 
 ```
 
+```{=tex}
+\sisetup{inter-unit-product = \ensuremath { { } \cdot { } } }
+```

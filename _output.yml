@@ -12,6 +12,7 @@ bookdown::pdf_book:
     # --shell-escape,
     --highlight-style=tango
   ]
+  # template: default.latex
   template: template.tex
   # extra_dependencies: [
   #   "amsfonts",

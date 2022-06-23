@@ -1,0 +1,102 @@
+# Reeglid
+
+## Jõud
+
+```{=tex}
+\begin{align}
+F := a \cdot m,
+(\#eq:force)
+\end{align}
+```
+
+milles *a* on kiirendus ja *m* on mass [@haynes_2014_crc, p. 1-22]. Dimensionaalanalüüs:
+
+```{=tex}
+\begin{align}
+\frac{L}{T^2} \cdot M = \frac{L \cdot M}{T^2},
+(\#eq:dimensional-analysis-for-force)
+\end{align}
+```
+
+mistõttu ühik on $\unit{\frac{m \cdot kg}{s^2}}$ või lühemalt $\unit{N}$.
+
+## Energia, töö, soojushulk
+
+```{=tex}
+\begin{align}
+E := F \cdot \Delta(s) = m \cdot a \cdot \Delta(s),
+(\#eq:energy)
+\end{align}
+```
+
+milles $\Delta(s)$ on nihe. Dimensionaalanalüüs:
+
+```{=tex}
+\begin{align}
+\frac{L \cdot M}{T^2} \cdot L = \frac{L^2 \cdot M}{T^2},
+(\#eq:dimensional-analysis-for-energy)
+\end{align}
+```
+
+mistõttu ühik on $\unit{\frac{m^2 \cdot kg}{s^2}}$ või lühemalt $\unit{m \cdot N}$ või veelgi lühemalt $\unit{J}$.
+
+## Võimsus, kiirgusvoog
+
+```{=tex}
+\begin{align}
+P := \frac{E}{t} = \frac{m \cdot a \cdot \Delta(s)}{t},
+(\#eq:power)
+\end{align}
+```
+
+kus *t* on aeg. Dimensionaalanalüüs:
+
+```{=tex}
+\begin{align}
+\frac{L^2 \cdot M}{T^2 \cdot T} = \frac{L^2 \cdot M}{T^3}
+(\#eq:dimensional-analysis-for-power)
+\end{align}
+```
+
+mistõttu ühik on $\unit{\frac{m^2 \cdot kg}{s^3}}$ või lühemalt $\unit{\frac{J}{s}}$ või veelgi lühemalt $\unit{W}$.
+
+## Elektripotentsiaalide erinevus, elektromotoorjõud
+
+```{=tex}
+\begin{align}
+U := \frac{P}{I} = \frac{m \cdot a \cdot \Delta(s)}{t \cdot I},
+(\#eq:electric-potential-difference)
+\end{align}
+```
+
+kus *I* on voolutugevus. Dimensionaalanalüüs:
+
+
+```{=tex}
+\begin{align}
+\frac{L^2 \cdot M}{T^3 \cdot I}
+(\#eq:dimensional-analysis-for-electric-potential-difference)
+\end{align}
+```
+
+mistõttu ühik on $\unit{\metre\squared\kg\per\cubic\second\per\ampere}$ või lühemalt $\unit{\watt\per\ampere}$ või veelgi lühemalt $\unit{\volt}$.
+
+## Aurustumissoojus
+
+```{=tex}
+\begin{align}
+\Delta_\text{vap}(H) = \frac{E}{m} = \frac{m \cdot a \cdot \Delta(s)}{m} = a \cdot \Delta(s).
+(\#eq:heat-of-vaporization)
+\end{align}
+```
+
+Dimensionaalanalüüs:
+
+```{=tex}
+\begin{align}
+\frac{L^2 \cdot M}{T^2 \cdot M} = \frac{L^2}{T^2},
+(\#eq:dimensional-analysis-for-heat-of-vaporization)
+\end{align}
+```
+
+mistõttu ühik on $\unit{\metre\squared\per\second\squared}$ või teisiti $\unit{\joule\kg}$.

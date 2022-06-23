@@ -1,0 +1,12 @@
+# Mõistete seletused
+
+energia
+: süsteemi omadus, mis seda võimaldab
+tööd tegema [@haynes_2014_crc, p. 2-51]
+
+entalpia
+: termodünaamiline funktsioon, eriti kasulik
+konstantse rõhuga protsesside käsitlemisel, määratletud kui $H := E + PV$, kus *E* on energia, *P* rõhk ja *V* maht [@haynes_2014_crc, p. 2-52]
+
+aurustumissoojus
+: entalpia muutus üleminekul vedelast olekust gaasiliseks [@haynes_2014_crc, p. 2-52]

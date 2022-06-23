@@ -1,10 +1,11 @@
-book_filename: "physics-spring-pendulum"
+book_filename: "physics-heat-of-vaporization"
 new_session: false
 delete_merged_file: true
 rmd_files: [
   "index.Rmd",
   "töö-eesmärgid.Rmd",
   "töövahendid.Rmd",
+  "rules.Rmd",
   "katseseadme-ülesseadmine/katseseadmete-skeemid.Rmd",
   "töö-käik/töö-käik.Rmd",
   "andmeanalüüs.Rmd",

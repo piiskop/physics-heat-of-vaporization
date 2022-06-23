@@ -1,0 +1,4 @@
+# Teooria
+
+Üks võimalus vee aurustumissoojust arvutada on lasta vedel vesi keema ja mõõta, kui palju aega kulub teatud koguse vedela vee vähenemiseks aurustumise tõttu. Lisaks on vaja teada seadme võimsust, millega vett keedetakse.
+[@n5]

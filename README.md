@@ -1,1 +1,1 @@
-Tallinna Ülikooli mehaanika praktikumi peacecop kalmeri: raport lihtsa harmoonilise võnkumise - vedrupendli kohta.
+Tallinna Ülikooli mehaanika praktikumi peacecop kalmeri: raport vee aurustumissoojuse määramise kohta ekstrapoleerimismeetodil.

@@ -4,8 +4,10 @@ output:
   html_document: default
 ---
 
-# Töö eesmärgid
+# Eesmärgid
 
-1. Vedru jälkuse mõõtmine
+1. Füüsikaliste protsesside vaatlemise oskus arendatud.
 
-2. Vedru otsas rippuva raskuse võnkumise uurimine.
+2. Ekstrapoleerimismeetod tundma õpitud.
+
+3. Vee aurustumissoojus eksperimentaalselt määratud.
