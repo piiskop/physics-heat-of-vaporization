@@ -100,3 +100,16 @@ Dimensionaalanalüüs:
 ```
 
 mistõttu ühik on $\unit{\metre\squared\per\second\squared}$ või teisiti $\unit{\joule\kg}$.
+
+## Suhteline erinevus
+
+Suhteline erinevus:
+
+```{=tex}
+\begin{align}
+RE := \frac{|f - r|}{f}
+(\#eq:relative-difference)
+\end{align}
+```
+
+[@stephanie_2016_relative].

@@ -1,58 +1,38 @@
-# Vastused küsimustele
+# Järeldused
+```{r label = "f"}
+delta_vap_H_f <- 2448.8e3
+```
 
-1.  **Milline on erinevus mõõdetud ja arvutatud võnkeperioodide *T* ja $T_f$ vahel? Lasin arvutada suhtelise erinevuse vastavalt valemile \@ref(eq:relative-difference):**
+Vastavalt *CRC Handbook of Chemistry and Physics, 95th Edition*ile on vee aurustumissoojus $\qty{22}{\degreeCelsius}$, mis tõenäoliselt oli katse keskkonna temperatuur, $`r delta_vap_H_f`\unit{\joule\per\kilogram}$ [@haynes_2014_crc, p. 6-5]. Lasen arvutada suhtelise vea vastavalt valemile \@ref(eq:relative-difference) leheküljel $\pageref{eq:relative-difference}$:
+```{r label = "relative-error"}
+AE <- abs(delta_vap_H_f - delta_vap_H)
+RE <- AE / delta_vap_H_f
+```
 
-    ```{r}
-    R_T <- (T_f - mean_period) / T_f
-    ```
-    
-    `r signif(R_T, digits = 2)` on erinevus mõõdetud ja arvutatud võnkeperioodide vahel. Kuna selle absoluutväärtus on alla 0.1, järeldan, et eksperiment õnnestus.
-    
-2.  **Mida nimetatakse võnkumise võnkeperioodiks? Mida nimetatakse sageduseks? Kuidas antud töö korral leidsin võnkumise perioodi?**
+ja selleks on `r signif(RE, digits = 2)`. Kuna suhteline viga on liiga suur, eksperiment ebaõnnestus, st ei saanud me kinnitust vee teaduslikult väljaarvutatud aurustumissoojusele. Absoluutne viga oli $`r signif(AE, digits = 2)`\unit{\joule\per\kilogram}$.
 
-    võnkeperiood
-    : ajavahe kahe sama magnituudiga faasi vahel
-    : ajavahemik ühe võnke sooritamiseks
-    
-    sagedus
-    : perioodi pöördväärtus
-    : sündmuste arv ajaühiku kohta
-    : perioodilise nähtuse tsüklite arv jagatuna ajaga [@haynes_2014_crc, p. 2-53]
-    
-    Antud töö korral leidsin võnkumise perioodi kahel viisil: nii mõõtmiste kui arvutamise kaudu. Esimesel juhul kasutasin mõõtmiseks sensorit, mis mõõtis ja edastas andmeid nagu kaugus sensorist, aeg, kiirus ja kiirendus. Maksimaalsete kauguste tasakaalu positsioonist vahed olid perioodid, millest arvutasin keskmise. Teisel juhul mõõtsin vedru jälkuse, selle otsa riputatud asjanduse massi ja kasutasin valemit period.
-    
-3.  **Mida nimetatakse võnkumiste algfaasiks? Mida kujutab endast faasinihe? Märkisin aeg-asukoht- ja aeg-kiirus-graafikutele erinevate pendli asendite korral võnkumise faasi ja võnkumise kiiruse faasi (nt tasakaalu- ja maksimaalse hälbe kohtadel) kraadides ja radiaanides.**
+Kui kasutada regressioonigraafiku meetodiks *loess*'i *lm*'i asemel, näeme jooniselt \@ref(fig:regression-with-loess), kus võivad sisendandmetes olla vead.
+```{r label = "regression-with-loess", fig.cap="Vee aurustamisel toimuva ümbritseva keskkonna kütmise massi kohta regressioonisirge $\\textit{loess}$-meetodiga"}
+librarian::shelf(
+  ggplot2,
+  latex2exp,
+  ggpubr # for stat_regline_equation
+)
 
-    võnkumiste algfaas
-    : faas, millest alates arvestatakse perioodi
-    
-    faasinihe
-    : nurk, mida kasutatakse kosiinuses või siinuses nihutamaks funktsiooni graafikut vasakule või paremale
-    
-    Faasinihet kasutatakse funktsiooni sobitamiseks andmete esialgsele olekule.
-    
-    Esimese tasakaalu positsiooni ja ülemise maksimaalse asukoha faasid on märgitud joonisele \@ref(fig:both-lines).
-    
-4.  **Teades võnkumiste amplituudi ja teisi võnkumisi iseloomustavaid suurusi, milline on üldine võnkumise võrrand \@ref(eq:deviation) leheküljel $\pageref{eq:deviation}$ konkreetselt minu eksperimendi jaoks? Kirjutan välja ka võrrandi \@ref(eq:deviation) erijuhu alghetke $t := 0$ ja oma valitud ajahetke jaoks. Kontrollin, kas erijuhul leitud punkt langeb aeg-asukoht-graafikule õigesse kohta.**
+ggplot(data = vaporization, aes(x = t, y = E_per_delta_m)) + geom_point() +
+  labs(x = TeX("$\\frac{\\Delta(t)}{s}$"), y = TeX("$\\frac{\\frac{E}{\\Delta(m)}}{\\frac{J}{kg}}$")) +
+  geom_smooth(formula = "y ~ x", method = "loess", se = FALSE) +
+  stat_regline_equation()
 
-    Üldine võrrand:
+```
 
-    ```{=tex}
-    \begin{align}
-    x := `r x_max` \times sin(`r signif(2 / mean_period, digits = 2)` \times \pi \times t + `r signif(phi_0_unshifted, digits = 3)`).
-    (\#eq:common-equation)
-    \end{align}
-    ```
+Jooniselt \@ref(fig:regression-with-loess) paistab, et kui neid vasakpoolseid alumisi punkte nii madalal ei oleks, siis kõrvalekallet ka poleks. Ometi ei saa kindlalt väita, et mingi sisendanne oli vale, sest vajalikku seaduspära pole näha. Kui kõige suurema võimsuse juures oli iga kümne grammi võrra vedela vee massi vähenemise kestus enam-vähem ühesugune, siis väiksema võimsuse puhul tulid sisse võrdlemisi suured erinevused, justnagu ümbritsevasse keskkonda kandunuks siis soojust ebaühtlasemalt.
 
-    ```{r label = "special-points"}
-    calculate_x <- function(t) {
-      x_max * sin(2 / mean_period * pi * t + phi_0_unshifted)
-    }
-    
-    x_0 <- calculate_x(0)
-    x_special <- calculate_x(5)
-    
-    ```
+Teised eesmärgid said saavutatud.
 
+Kogesime, et vee aurustamiseks on vaja sellele lisada soojust. Vihmasaju kestel toimub ka vee aurustumine, milleks liigub vajalik soojus õhust, mistõttu õhk jahtub.
 
-    Hetke $t := 0$ kohta mitte mingeid andmeid mul pole. Lähtudes üldvõrrandist \@ref(eq:common-equation) võinuks sellises ajahetkes olla hälve $`r signif(x_0, digits = 2)` \mathrm{\times m}$. Viienda sekundi lõpus oli valemi järgi vedru otsas rippuva asjanduse alumise serva hälve tasakaaluasendist $\textcolor{green}{`r signif(x_special, digits = 2)` \mathrm{\times m}}$. Graafikul on see õiges kohas tähistatuna rohelise sõõrina joonisel \@ref(fig:both-lines) leheküljel $\pageref{fig:both-lines}$.
+keemine
+: protsess, milles aine vedel ja gaasiline olek on vastava rõhu puhul tasakaalus [@haynes_2014_crc, p. 2-47]
+
+Keemine tekib, kui vedeliku rõhk ja atmosfääri rõhk ühtlustuvad.

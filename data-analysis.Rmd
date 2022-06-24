@@ -23,12 +23,12 @@ I <- rep(c(4.25, 3.85, 3.35, 2.95), each = 5)
 U <- rep(c(200, 180, 160, 140), each = 5)
 t <- c(30, 25, 30, 27, 23, 40, 32, 41, 39, 22, 31, 28, 70, 47, 50, 75, 82, 36, 65, 33)
 E <- U * I * t
-E_per_delta_m <- E / delta_m
+E_per_delta_m <- E / (delta_m * 1e-3)
 
 vaporization <- data.frame(
   identifier,
-  c(rep(m1[1], 5), rep(m2[1], 5), rep(m3[1], 5), rep(m4[1], 5)),
-  c(m1[2:number_of_elements_in_mass], m2[2:number_of_elements_in_mass], m3[2:number_of_elements_in_mass], m4[2:number_of_elements_in_mass]),
+  c(rep(m1[1], 5), rep(m2[1], 5), rep(m3[1], 5), rep(m4[1], 5)) * 1e-3,
+  c(m1[2:number_of_elements_in_mass], m2[2:number_of_elements_in_mass], m3[2:number_of_elements_in_mass], m4[2:number_of_elements_in_mass]) * 1e-3,
   delta_m,
   I,
   U,
@@ -66,15 +66,14 @@ librarian::shelf(
 )
 
 ggplot(data = vaporization, aes(x = t, y = E_per_delta_m)) + geom_point() +
-  labs(x = TeX("$\\frac{\\Delta(t)}{\\unit{s}}$"), y = TeX("$\\frac{\\frac{E}{\\Delta(m)}}{\\unit{\\joule\\per\\kilogram}}$")) +
+  labs(x = TeX("$\\frac{\\Delta(t)}{s}$"), y = TeX("$\\frac{\\frac{E}{\\Delta(m)}}{\\frac{J}{kg}}$")) +
   geom_smooth(formula = "y ~ x", method = "lm", se = FALSE) +
   stat_regline_equation()
 
 E_per_delta_m_lm <- lm(E_per_delta_m ~ t, data = vaporization)
 summary_E_per_delta_m_lm <- summary(E_per_delta_m_lm)
-summary_E_per_delta_m_lm
 delta_vap_H <- summary_E_per_delta_m_lm$coefficients["(Intercept)", "Estimate"]
-# abs_k <- abs(k)
 
 ```
 
+Vee aurustumissoojuseks osutus meie eksperimendi põhjal $`r signif(delta_vap_H, digits = 2)` \times \unit{\joule\per\kilogram}$.

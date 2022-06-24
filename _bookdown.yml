@@ -10,8 +10,7 @@ rmd_files: [
   "practice.Rmd",
   "katseseadme-ülesseadmine/katseseadmete-skeemid.Rmd",
   "data-analysis.Rmd",
-  # "andmeanalüüs.Rmd",
-  # "küsimused-vastused.Rmd",
+  "küsimused-vastused.Rmd",
   "99-references.Rmd"
 ]
 download: [

@@ -91,5 +91,5 @@ print_table <- function(data_frame, caption, digits = 2) {
 ```
 
 ```{=tex}
-\sisetup{inter-unit-product = \ensuremath { { } \cdot { } } }
+\sisetup{inter-unit-product = \ensuremath { { } \times { } } }
 ```
