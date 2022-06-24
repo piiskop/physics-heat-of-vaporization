@@ -1,0 +1,80 @@
+# Andmeanalüüs
+
+```{r label = "input"}
+identifier <- c(seq(from = 1.1, to = 1.5, by = .1), seq(from = 2.1, to = 2.5, by = .1), seq(from = 3.1, to = 3.5, by = .1), seq(from = 4.1, to = 4.5, by = .1))
+m1 <- c(2010, 2000, 1990, 1980, 1970, 1960)
+m2 <- c(1900, 1890, 1880, 1870, 1860, 1850)
+m3 <- c(1820, 1810, 1800, 1790, 1780, 1770)
+m4 <- c(1740, 1730, 1720, 1710, 1700, 1690)
+delta_m <- c()
+number_of_elements_in_mass <- length(m1)
+
+for (index_of_mass_series in 1:4) {
+  
+  name_of_vector <- get(paste("m", index_of_mass_series, sep = ""))
+  
+  for (index_of_mass in 1:length(m1) - 1) {
+    delta_m <- c(delta_m, name_of_vector[index_of_mass] - name_of_vector[index_of_mass + 1])
+  }
+
+}
+
+I <- rep(c(4.25, 3.85, 3.35, 2.95), each = 5)
+U <- rep(c(200, 180, 160, 140), each = 5)
+t <- c(30, 25, 30, 27, 23, 40, 32, 41, 39, 22, 31, 28, 70, 47, 50, 75, 82, 36, 65, 33)
+E <- U * I * t
+E_per_delta_m <- E / delta_m
+
+vaporization <- data.frame(
+  identifier,
+  c(rep(m1[1], 5), rep(m2[1], 5), rep(m3[1], 5), rep(m4[1], 5)),
+  c(m1[2:number_of_elements_in_mass], m2[2:number_of_elements_in_mass], m3[2:number_of_elements_in_mass], m4[2:number_of_elements_in_mass]),
+  delta_m,
+  I,
+  U,
+  t,
+  E,
+  E_per_delta_m
+)
+
+colnames(vaporization) <- c(
+  "Katse",
+  "Algmass $\\frac{m1}{\\unit{\\kilogram}}$",
+  "Lõppmass $\\frac{m2}{\\unit{\\kilogram}}$",
+  "Massi erinevus $\\frac{m := m1 - m2}{\\unit{\\kilogram}}$",
+  "Voolutugevus $\\frac{I}{\\unit{\\ampere}}$",
+  "Pinge $\\frac{U}{\\unit{\\volt}}$",
+  "Aeg $\\frac{t}{\\unit{\\second}}$",
+  "Soojushulk $\\frac{E := U \\cdot I \\cdot t}{\\unit{\\joule}}$",
+  "Soojushulk massi kohta $\\frac{\\frac{E}{m}}{\\unit{\\joule\\per\\kilogram}}$"
+)
+
+librarian::shelf("dplyr")
+librarian::shelf("kableExtra")
+
+print_table(vaporization, caption = "Vee aurustumissoojuse sisend- ja vaheväärtused", digits = 3) %>%
+  landscape()
+
+```
+
+Joonisel \@ref(fig:regression) on näha vee aurustamisel toimuva ümbritseva keskkonna kütmise massi kohta regressioonisirge.
+```{r label = "regression", fig.cap="Vee aurustamisel toimuva ümbritseva keskkonna kütmise massi kohta regressioonisirge"}
+librarian::shelf(
+  ggplot2,
+  latex2exp,
+  ggpubr # for stat_regline_equation
+)
+
+ggplot(data = vaporization, aes(x = t, y = E_per_delta_m)) + geom_point() +
+  labs(x = TeX("$\\frac{\\Delta(t)}{\\unit{s}}$"), y = TeX("$\\frac{\\frac{E}{\\Delta(m)}}{\\unit{\\joule\\per\\kilogram}}$")) +
+  geom_smooth(formula = "y ~ x", method = "lm", se = FALSE) +
+  stat_regline_equation()
+
+E_per_delta_m_lm <- lm(E_per_delta_m ~ t, data = vaporization)
+summary_E_per_delta_m_lm <- summary(E_per_delta_m_lm)
+summary_E_per_delta_m_lm
+delta_vap_H <- summary_E_per_delta_m_lm$coefficients["(Intercept)", "Estimate"]
+# abs_k <- abs(k)
+
+```
+

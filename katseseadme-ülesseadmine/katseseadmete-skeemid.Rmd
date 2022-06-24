@@ -1,10 +1,7 @@
 # Katseseadme skeem
 
-```{r setting-up-test-device, fig.cap = "Matemaatilise ja füüsikalise pendli katseseade", fig.margin = TRUE}
+```{r setting-up-test-device, fig.cap = "Vee aurustumissoojuse kindlaksmääramise katseseade", fig.margin = TRUE}
 include_svg("katseseadme-ülesseadmine/katseseadme-ülesseadmine.svg")
 ```
 
-```{r label = "harmonic-oscillation", fig.cap = "Katsevahendite asetus vedru harmoonilise võnkumise analüüsiks", fig.margin = TRUE}
-include_svg("katseseadme-ülesseadmine/harmonic-oscillation.svg")
-```
 

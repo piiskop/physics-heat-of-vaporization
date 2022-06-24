@@ -6,10 +6,12 @@ rmd_files: [
   "töö-eesmärgid.Rmd",
   "töövahendid.Rmd",
   "rules.Rmd",
+  "teoreetiline-osa.Rmd",
+  "practice.Rmd",
   "katseseadme-ülesseadmine/katseseadmete-skeemid.Rmd",
-  "töö-käik/töö-käik.Rmd",
-  "andmeanalüüs.Rmd",
-  "küsimused-vastused.Rmd",
+  "data-analysis.Rmd",
+  # "andmeanalüüs.Rmd",
+  # "küsimused-vastused.Rmd",
   "99-references.Rmd"
 ]
 download: [

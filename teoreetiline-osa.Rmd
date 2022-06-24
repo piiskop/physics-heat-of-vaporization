@@ -1,4 +1,91 @@
 # Teooria
 
-Üks võimalus vee aurustumissoojust arvutada on lasta vedel vesi keema ja mõõta, kui palju aega kulub teatud koguse vedela vee vähenemiseks aurustumise tõttu. Lisaks on vaja teada seadme võimsust, millega vett keedetakse.
-[@n5]
+Üks võimalus vee aurustumissoojust arvutada on lasta vedel vesi keema ja mõõta, kui palju aega kulub teatud koguse vedela vee vähenemiseks aurustumise tõttu. Seda saab teha nii referentstemperatuuri mõõtmisega kui soojendava seadme võimsuse järgi. meie kasutasime viimatinimetatud meetodit. Põhijuhendist ma aru ei saanud, küll aga ühest leitud juhendist [@fsika].
+
+Kui keeduspiraalist hakkab erituma soojust, siis kulub see soojusenergia nii vee aurustamiseks kui ka ümbritseva keskkonna kütmiseks, millest viimast nimetatakse antud katse eesmärki silmas pidades soojuskaoks. Vastavalt aurustumissoojuse valemile \@ref(eq:heat-of-vaporization) saan avaldada kogusoojushulga:
+
+```{=tex}
+\begin{align}
+E := \Delta_\text{vap}(H) \cdot m + E_\text{lost},
+(\#eq:total-heat)
+\end{align}
+```
+
+mille dimensionaalanalüüs on järgmine:
+
+```{=tex}
+\begin{align}
+\frac{L^2}{T^2} \cdot M + \frac{L^2 \cdot M}{T^2} = \frac{L^2 \cdot M}{T^2}.
+(\#eq:dimensional-analysis-for-total-heat)
+\end{align}
+```
+
+Avaldan kogu soojushulga valemist \@ref(eq:total-heat) leheküljel $\pageref{eq:total-heat}$ aurustumissoojuse:
+
+
+```{=tex}
+\begin{align}
+\frac{E}{m} &= \Delta_\text{vap}(H) + \frac{E_\text{lost}}{m}\\
+\Delta_\text{vap}(H) :&= \frac{E}{m} - \frac{E_\text{lost}}{m}
+(\#eq:heat-of-vaporization-by-total-heat)
+\end{align}
+```
+
+ja teostan vastava dimensionaalanalüüsi:
+
+
+```{=tex}
+\begin{align}
+\frac{\frac{L^2 \cdot M}{T^2}}{M} - \frac{\frac{L^2 \cdot M}{T^2}}{M} = \frac{L^2}{T^2}.
+(\#eq:dimensional-analysis-for-heat-of-vaporization-by-total-heat)
+\end{align}
+```
+
+Vedela vee massi ma saan kaaluga mõõta, ent kumbagi soojushulka otse mitte. Kogu soojushulk, mis spiraalist eraldub, on arvutatav valemite \@ref(eq:power) leheküljel $\pageref{eq:power}$ ja \@ref(eq:electric-potential-difference) abil:
+
+```{=tex}
+\begin{align}
+E :&= P \cdot t = U \cdot I \cdot t,
+(\#eq:total-heat-by-power-and-time)
+\end{align}
+```
+
+mille dimensionaalanalüüs on
+
+```{=tex}
+\begin{align}
+\frac{L^2 \cdot M}{T^3 \cdot I} \cdot I \cdot T = \frac{L^2 \cdot M}{T^2},
+(\#eq:dimensional-analysis-for-total-heat-by-power-and-time)
+\end{align}
+```
+
+Asendan kogu soojushulga valemis \@ref(eq:total-heat-by-power-and-time) lahtikirjutatuna aurustumissoojuse valemisse \@ref(eq:heat-of-vaporization-by-total-heat):
+
+
+```{=tex}
+\begin{align}
+\Delta_\text{vap}(H) :&= \frac{U \cdot I \cdot t}{m} - \frac{E_{lost}}{m}
+(\#eq:heat-of-vaporization-by-power-and-time)
+\end{align}
+```
+
+ja teostan vastava dimensionaalanalüüsi:
+
+
+```{=tex}
+\begin{align}
+\frac{\frac{L^2 \cdot M}{T^3 \cdot I} \cdot I \cdot T}{M} - \frac{\frac{L^2 \cdot M}{T^2}}{M} = \frac{L^2}{T^2}
+(\#eq:dimensional-analysis-for-heat-of-vaporization-by-power-and-time)
+\end{align}
+```
+
+Nüüd kogu soojushulga arvutamisega probleemi pole, sest mõõta saan nii pinget, voolutugevust kui aega lisaks massile. Siiski on aurustumissoojuse valemis \@ref(eq:heat-of-vaporization-by-power-and-time) leheküljel $\pageref{eq:heat-of-vaporization-by-power-and-time}$ veel teine muutuja - soojuskadu, mida samuti otse mõõta ei saa. Kahe tundmatuga võrrandit lahendada ei saa. Seega, kui ma teaksin ainult üht massi, pinget, voolutugevust ja ajavahemikku, siis sellest andmestikust ei piisaks vee aurustumissoojuse arvutamiseks. Kui vaadata aurustumissoojuse valemile \@ref(eq:heat-of-vaporization-by-power-and-time) peale, näeme, et see on lineaartalitluse kujul, kui arvestada nt aega sisendina ja kõike muud muutumatute väärtustena. Saan viia läbi katseseeria muutumatu pinge ja voolutugevusega. Kuid kuidas saada mass konstantseks? Kui ma lasen veel keeda ja mõõdan  iga teatud ühesuguse koguse vedela vee vähenemise ajavahemiku, siis ongi massierinevus sama. Jääb veel üle nuriseda soojuskao kui võimaliku muutuja üle. Tuleb appi võtta eeldus, et aurustumissoojus ise on muutumatu suurus. Seetõttu käsitlen aurustumissoojust vabaliikmena ja kirjutan valemi \@ref(eq:heat-of-vaporization-by-power-and-time) ümber lineaartalitluseks:
+
+```{=tex}
+\begin{align}
+\frac{E_\text{lost}}{m} = \frac{U \cdot I \cdot t}{m} - \Delta_\text{vap}(H).
+(\#eq:heat-lost-per-mass)
+\end{align}
+```
+
+Mis juhtub, kui võrrandi \@ref(eq:heat-lost-per-mass) ainsa muutuja *t* väärtust sättida nulliks? Sellisel juhul jääb võrrandi paremale poolele aurustumissoojuse väärtuse vastandarv, mis on võrdne soojuskao ja massierinevuse suhtega. Soojuskadu ma ei tea ega ei saa otse mõõta ning hetke kestel ei seda ka pole, nagu ei vähene ka vedela vee mass, millest tulenevalt ei saa aurustumissoojust üheselt väärtustada. Iga ajavahemiku kohta saan lasta arvutada vastava kogu soojushulga ja massi suhte väärtuse, millest aurustumissoojuse väärtust lahutades saan soojakao ja massi suhte. Kui neid kogu soojushulga ja massi suhte väärtusi on piisavalt palju, saab nende põhjal arvutada regressiooni. Ilma selleta võiks ju väita, et selle regressioonisirge tõus on kogu soojushulga ja massi suhe, mille saaksin ette arvutada, ainult et siis jääks vabaliikme ehk aurustumissoojuse väärtuse vastandarv müsteeriumiks. Seetõttu ma lasen arvutada regressiooni kasutades katseandmeid, mida võiks olla võimalikult palju. Regressioonisirge lõikepunkt ordinaatteljega on kohas, kus aja väärtus on 0 ja vabaliige on sellel kohal sirge talitluse väärtus ning seda vaja ongi, sest see on aurustumissoojuse väärtuse vastandarv.

@@ -1,0 +1,3 @@
+# Praktika
+
+Ühendasin ja paigutasin kõik vajaminevad vahendid (osa \@ref(manners)) vastavalt skeemile joonisel \@ref(fig:setting-up-test-device). Tegutsesin nagu videos [@n5] mõningaste erinevustega. Nimelt kui tollel mehel selles videos oli teada soojendi võimsus, siis minul sellist teavet polnud. Seadsin pinge esmalt 200 voldi peale ja tegin viis katset märkides tabelisse \@ref(tab:input) iga kümne grammi võrra kaalu peal oleva vee massi vähenemise kestuse. Kasutasin niimoodi kokku nelja erinevat pinget.
