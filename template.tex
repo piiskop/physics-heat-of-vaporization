@@ -42,7 +42,9 @@
 
 \author{$author$} % Author name(s), add additional authors like: '\& James \textsc{Smith}'
 
-\date{\today} % Date of the report
+\usepackage{datetime}
+\newcommand{\customtoday}	{\the\year\twodigit{\the\month}\twodigit{\the\day}}
+\date{\customtoday} % Date of the report
 
 %----------------------------------------------------------------------------------------
 
